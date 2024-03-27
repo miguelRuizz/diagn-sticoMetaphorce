@@ -1,21 +1,25 @@
 package com.metaphorce.diagnostico.services;
 
+import com.metaphorce.diagnostico.models.Sesion;
 import com.metaphorce.diagnostico.models.Usuario;
+import com.metaphorce.diagnostico.repositories.SesionRepository;
 import com.metaphorce.diagnostico.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UsuarioService {
     HashMap<String,Object> datos;
 
+    @Autowired
     private final UsuarioRepository usuarioRepository;
+
+    /*@Autowired
+    private final SesionRepository sesionRepository;*/
 
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository) {
@@ -81,4 +85,21 @@ public class UsuarioService {
                 HttpStatus.ACCEPTED
         );
     }
+
+    /*public ResponseEntity<Object> asistenciaASesion(long usuarioId, long sesionId) {
+        Set<Sesion> sesionSet = null;
+        Usuario usuario = usuarioRepository.findById(usuarioId).get();
+        Sesion sesion = sesionRepository.findById(sesionId).get();
+        sesionSet = usuario.getSesiones();
+        sesionSet.add(sesion);
+        usuario.setSesiones(sesionSet);
+        usuarioRepository.save(usuario);
+
+        datos.put("message","Sesión " + sesionId + " añadida al usuario "+ usuarioId +" con éxito.");
+        datos.put("data",usuario);
+        return new ResponseEntity<>(
+                datos,
+                HttpStatus.ACCEPTED
+        );
+    }*/
 }

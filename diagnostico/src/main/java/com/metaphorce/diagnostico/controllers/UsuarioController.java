@@ -33,4 +33,12 @@ public class UsuarioController {
     public ResponseEntity<Object> deleteUsuario(@PathVariable("usuarioId") Long id){
         return this.usuarioService.deleteUsuario(id);
     }
+
+    /*@PutMapping("/{usuarioId}/asistencias/{sesionId}")
+    public ResponseEntity<Object> asistenciaASesion (
+           @PathVariable("usuarioId") long usuarioId,
+           @PathVariable("sesionId") long sesionId
+    ){
+        return this.usuarioService.asistenciaASesion(usuarioId,sesionId);
+    }*/
 }
