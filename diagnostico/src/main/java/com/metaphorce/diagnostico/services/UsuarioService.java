@@ -86,6 +86,24 @@ public class UsuarioService {
         );
     }
 
+    public ResponseEntity<Object> getAsistencias(Long id){
+        datos = new HashMap<>();
+        boolean exists=this.usuarioRepository.existsById(id);
+        if(!exists){
+            datos.put("error",true);
+            datos.put("message","No existe un usuario con ese ID");
+            return new ResponseEntity<>(
+                    datos,
+                    HttpStatus.CONFLICT
+            );
+        } else {
+            List<Sesion> asistenciasASesiones = usuarioRepository.findAsistenciaByUsuarioId(id);
+            return new ResponseEntity<>(
+                    asistenciasASesiones,
+                    HttpStatus.ACCEPTED
+            );
+        }
+    }
     /*public ResponseEntity<Object> asistenciaASesion(long usuarioId, long sesionId) {
         Set<Sesion> sesionSet = null;
         Usuario usuario = usuarioRepository.findById(usuarioId).get();

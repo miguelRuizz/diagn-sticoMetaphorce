@@ -33,4 +33,8 @@ public class SesionController {
     public ResponseEntity<Object> deleteSesion(@PathVariable("sesionId") Long id){
         return this.sesionService.deleteSesion(id);
     }
+    @GetMapping("/{sesionId}/asistencias")
+    public ResponseEntity<Object> getAsistencias(@PathVariable("sesionId") Long id){
+        return this.sesionService.getAsistencias(id);
+    }
 }

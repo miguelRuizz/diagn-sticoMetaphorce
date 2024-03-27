@@ -78,4 +78,23 @@ public class SesionService {
                 HttpStatus.ACCEPTED
         );
     }
+
+    public ResponseEntity<Object> getAsistencias(Long id){
+        datos = new HashMap<>();
+        boolean exists=this.sesionRepository.existsById(id);
+        if(!exists){
+            datos.put("error",true);
+            datos.put("message","No existe una sesión con ese ID");
+            return new ResponseEntity<>(
+                    datos,
+                    HttpStatus.CONFLICT
+            );
+        } else {
+            List<Usuario> asistenciasASesiones = sesionRepository.findAsistenciaBySesionId(id);
+            return new ResponseEntity<>(
+                    asistenciasASesiones,
+                    HttpStatus.ACCEPTED
+            );
+        }
+    }
 }

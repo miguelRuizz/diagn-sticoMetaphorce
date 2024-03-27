@@ -34,6 +34,10 @@ public class UsuarioController {
         return this.usuarioService.deleteUsuario(id);
     }
 
+    @GetMapping("/{usuarioId}/asistencias")
+    public ResponseEntity<Object> getAsistencias(@PathVariable("usuarioId") Long id){
+        return this.usuarioService.getAsistencias(id);
+    }
     /*@PutMapping("/{usuarioId}/asistencias/{sesionId}")
     public ResponseEntity<Object> asistenciaASesion (
            @PathVariable("usuarioId") long usuarioId,
